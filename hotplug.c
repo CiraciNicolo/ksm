@@ -36,8 +36,10 @@ static int ksm_hotplug_cpu(struct notifier_block *nfb, unsigned long action, voi
 		put_online_cpus();
 		break;
 	case CPU_DOWN_PREPARE:
-	case CPU_DYING:
-	case CPU_DYING_FROZEN:
+	/*
+	 * CPU_DYING and CPU_DYING_FROZEN has been removed, since most of the cases where CPU hot-plugging never happens just delete the notifier call-backs should work.
+	//case CPU_DYING:
+	//case CPU_DYING_FROZEN: */
 		smp_call_function_single(cpu, do_cpu, __ksm_exit_cpu, 1);
 		break;
 	}
