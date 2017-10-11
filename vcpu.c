@@ -52,6 +52,7 @@ u8 ept_memory_type(struct ksm *k, u64 gpa)
 	 *
 	 * See also: mm_cache_mtrr_ranges() in mm.c
 	 */
+#if 0
 	int i;
 	struct mtrr_range *range;
 	u8 type = 0xff;
@@ -74,6 +75,9 @@ u8 ept_memory_type(struct ksm *k, u64 gpa)
 		type = k->mtrr_def;
 
 	return type;
+#else
+	return EPT_MT_WRITEBACK;
+#endif
 }
 
 /*
