@@ -187,7 +187,7 @@
 #define EPTP_RWHOOK			1			/* hook eptp index, readwrite hooks, no exec  */
 #define EPTP_NORMAL			2			/* sane eptp index, no hooks  */
 #define EPTP_DEFAULT			EPTP_EXHOOK
-#define EPTP_INIT_USED			3			/* number of unique ptrs currently in use and should be freed  */
+#define EPTP_INIT_USED			2			/* number of unique ptrs currently in use and should be freed  */
 #define EPTP(e, i)			(e)->ptr_list[(i)]
 #define EPT4(e, i)			(e)->pml4_list[(i)]
 #define for_each_eptp(ept, i)		\

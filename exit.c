@@ -529,7 +529,7 @@ static bool vcpu_handle_vmfunc(struct vcpu *vcpu)
 		   ksm_read_reg32(vcpu, STACK_REG_AX), ksm_read_reg32(vcpu, STACK_REG_CX));
 	vcpu_inject_hardirq_noerr(vcpu, X86_TRAP_UD);
 	vcpu_advance_rip(vcpu);
-	VCPU_TRACER_END()
+	VCPU_TRACER_END();
 	return true;
 }
 
@@ -1262,12 +1262,12 @@ static inline bool vcpu_enter_nested_guest(struct vcpu *vcpu)
 
 static inline bool vcpu_read_vmx_addr(struct vcpu *vcpu, u64 gva, u64 *value)
 {
-	return ksm_read_virt(vcpu, gva, value, 8);
+	return ksm_read_virt(vcpu, gva, (u8 *)value, 8);
 }
 
 static inline bool vcpu_write_vmx_addr(struct vcpu *vcpu, u64 gva, u64 value)
 {
-	return ksm_write_virt(vcpu, gva, &value, 8);
+	return ksm_write_virt(vcpu, gva, (const u8 *)&value, 8);
 }
 
 static bool vcpu_handle_vmclear(struct vcpu *vcpu)
