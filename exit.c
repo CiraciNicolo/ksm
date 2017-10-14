@@ -2517,7 +2517,7 @@ static inline bool nested_can_handle(const struct nested_vcpu *nested, u32 exit_
 	case EXIT_REASON_RDPMC:
 		return nested_has_primary(nested, CPU_BASED_RDPMC_EXITING);
 	case EXIT_REASON_RDTSC:
-	case EXIT_REASON_RDTSCP:
+	case EXIT_REASON_RDTSCP: // return false if we would like to exclude nested from VMExit
 		return nested_has_primary(nested, CPU_BASED_RDTSC_EXITING);
 	case EXIT_REASON_PAUSE_INSTRUCTION:
 		return nested_has_primary(nested, CPU_BASED_PAUSE_EXITING) ||
